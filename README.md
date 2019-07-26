@@ -44,4 +44,3 @@ In the context your webpack config use API_URL env to configure the proxy just d
 
     API_URL=http://localhost:8000 yarn start
     har-express -p 8000 ./use-case.har
-

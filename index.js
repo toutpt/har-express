@@ -124,7 +124,7 @@ function getMiddleware(path, options) {
             if (found.length > 1) {
                 // rotation using the stateFilter
                 const key = `${req.method}-${req.path}`;
-                let index = stateFilter.get(key, 0);
+                let index = stateFilter.get(key) || 0;
                 if (index + 1 > found.length) {
                     index = 0;
                 }
@@ -134,7 +134,7 @@ function getMiddleware(path, options) {
             if (candidate.status !== 200) {
                 res.status(candidate.status);
             }
-            res.send(candidate.content.text);
+            res.type(candidate.content.mimeType).send(candidate.content.text);
         } else {
             next();
         }
