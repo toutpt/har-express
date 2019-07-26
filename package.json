@@ -1,6 +1,6 @@
 {
   "name": "har-express",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Use HAR file to create a mock server",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,7 @@
   },
   "author": "Jean-Michel FRANCOIS <toutpt@gmail.com>",
   "license": "Apache-2.0",
+  "keywords": ["har", "mock"],
   "bin": {
     "har-express": "./express.js"
   },
