@@ -1,5 +1,6 @@
 const fs = require('fs');
 const url = require('url');
+const pathLib = require('path');
 
 const DEFAULT_OPTIONS = {
     mimeType: 'application/json',
@@ -42,15 +43,15 @@ function parse(path) {
     };
     try {
         if (isDir(path)) {
-            fs.readdirSync(path).sort().reduce((acc, folderContent) => {
-                if (isDir(folderContent)) {
-                    acc = mergeHAR(acc, parse(folderContent));
-                }
-                if (folder.endsWith('.har')) {
+            HAR = fs.readdirSync(path).sort().reduce((acc, folderContent) => {
+                const subpath = pathLib.join(path, folderContent);
+                if (isDir(subpath)) {
+                    acc = mergeHAR(acc, parse(subpath));
+                } else if (subpath.endsWith('.har')) {
                     try {
-                        acc = mergeHAR(acc, JSON.parse(fs.readFileSync(folderContent)));
+                        acc = mergeHAR(acc, JSON.parse(fs.readFileSync(subpath)));
                     } catch(e) {
-                        console.error(`can't parse the file ${folderContent}`, e);
+                        console.error(`can't parse the file ${subpath}`, e);
                     }
                 }
                 return acc;
@@ -89,7 +90,7 @@ function filter(HAR, req, options=DEFAULT_OPTIONS) {
     });
     if (entries.length > 1) {
         let results = entries;
-        // first lets filter on query params 
+        // first lets filter on query params
         const withSameQueryString = entries.filter(e => {
             return e.request.queryString.every(qs => req.param(qs.name) === qs.value);
         });
