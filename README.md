@@ -34,7 +34,7 @@ module.exports = {
 };
 ```
 
-then you can start your project using 
+then you can start your project using
 
     HAR='./use-case.har' yarn start
 
