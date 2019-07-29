@@ -25,10 +25,10 @@ const options = args.reduce((acc, value, index) => {
 
 if (options.help) {
     printHelp();
-    return;
+} else {
+    app.use(har.getMiddleware(options.har));
+    app.use((req, res) => {
+        res.status(404).send();
+    });
+    app.listen(options.port);
 }
-app.use(har.getMiddleware(options.har));
-app.use((req, res) => {
-    res.status(404).send();
-});
-app.listen(options.port);

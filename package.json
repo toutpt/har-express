@@ -1,13 +1,17 @@
 {
   "name": "har-express",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Use HAR file to create a mock server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Jean-Michel FRANCOIS <toutpt@gmail.com>",
   "license": "Apache-2.0",
+  "keywords": [
+    "har",
+    "mock"
+  ],
   "bin": {
     "har-express": "./express.js"
   },
@@ -15,7 +19,11 @@
     "express": "^4.17.1"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/toutpt/har-express.git"
+    "type": "git",
+    "url": "https://github.com/toutpt/har-express.git"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "rewire": "^4.0.1"
   }
 }
