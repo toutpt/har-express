@@ -4,7 +4,7 @@
   "description": "Use HAR file to create a mock server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Jean-Michel FRANCOIS <toutpt@gmail.com>",
   "license": "Apache-2.0",
