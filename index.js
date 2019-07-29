@@ -91,7 +91,7 @@ function filter(HAR, req, options=DEFAULT_OPTIONS) {
         let results = entries;
         // first lets filter on query params 
         const withSameQueryString = entries.filter(e => {
-            e.request.queryString.every(qs => req.param(qs.name) === qs.value);
+            return e.request.queryString.every(qs => req.param(qs.name) === qs.value);
         });
         if (withSameQueryString.length > 0) {
             results = withSameQueryString;

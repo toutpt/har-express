@@ -1,5 +1,5 @@
 const rewire = require("rewire");
-const har = rewire('../index');
+const har = rewire('../');
 
 describe('har', () => {
     describe('mergeHAR', () => {
@@ -29,7 +29,7 @@ describe('har', () => {
         it('should return an HAR data structure', () => {
             const parse = har.__get__('parse');
             const content = parse(`${__dirname}/test.har`);
-            expect(content.log.entries.length).toBe(1);
+            expect(content.log.entries.length).toBe(3);
         });
     });
     describe('filter', () => {
@@ -42,6 +42,24 @@ describe('har', () => {
             const filter = har.__get__('filter');
             const entries = filter(content, {
                 path: '/foo', method: 'GET'
+            });
+            expect(entries.length).toBe(1);
+        });
+        it('should support queryString', () => {
+            // given
+            const filter = har.__get__('filter');
+            // when filter on search without queryString
+            let entries = filter(content, {
+                path: '/search', method: 'GET', param: () => undefined,
+            });
+            expect(entries.length).toBe(2);
+            // when filter on search with queryString
+            entries = filter(content, {
+                path: '/search', method: 'GET', param: (name) => {
+                    if (name === 'type') {
+                        return 'foo';
+                    }
+                },
             });
             expect(entries.length).toBe(1);
         });
