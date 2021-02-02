@@ -23,7 +23,7 @@
     "url": "https://github.com/toutpt/har-express.git"
   },
   "devDependencies": {
-    "jest": "^24.8.0",
-    "rewire": "^4.0.1"
+    "jest": "^26.0.0",
+    "rewire": "^5.0.0"
   }
 }
