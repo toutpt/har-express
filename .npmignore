@@ -2,3 +2,5 @@
 *.har
 /node_modules
 /tests
+.travis.yml
+.editorconfig
