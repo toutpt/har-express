@@ -21,9 +21,10 @@ const options = args.reduce((acc, value, index) => {
     } else if (fs.existsSync(value)) {
         acc.har = value;
     }
+    return acc;
 }, { port: 3000 });
 
-if (options.help) {
+if (options.help || !options.har) {
     printHelp();
 } else {
     app.use(har.getMiddleware(options.har));

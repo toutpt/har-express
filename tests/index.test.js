@@ -29,7 +29,7 @@ describe('har', () => {
         it('should return an HAR data structure', () => {
             const parse = har.__get__('parse');
             const content = parse(`${__dirname}/test.har`);
-            expect(content.log.entries.length).toBe(3);
+            expect(content.log.entries.length).toBe(5);
         });
     });
     describe('filter', () => {
@@ -63,5 +63,13 @@ describe('har', () => {
             });
             expect(entries.length).toBe(1);
         });
+        it('should support same body', () => {
+            const filter = har.__get__('filter');
+            let entries = filter(content, {
+                path: '/search', method: 'POST', param: () => undefined, body: '{\"q\": \"second\"}'
+            });
+            expect(entries.length).toBe(1);
+        });
+
     });
 });
