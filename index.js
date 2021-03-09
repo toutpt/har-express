@@ -92,7 +92,7 @@ function filter(HAR, req, options=DEFAULT_OPTIONS) {
         let results = entries;
         // first lets filter on query params
         const withSameQueryString = entries.filter(e => {
-            return e.request.queryString.every(qs => req.param(qs.name) === qs.value);
+            return e.request.queryString.every(qs => req.params[qs.name] === qs.value);
         });
         if (withSameQueryString.length > 0) {
             results = withSameQueryString;
@@ -102,7 +102,7 @@ function filter(HAR, req, options=DEFAULT_OPTIONS) {
             const withTheSameBody = entries.filter(e => {
                 const data = e.request.postData;
                 if (data) {
-                    return req.body === postData.text;
+                    return req.body === data.text;
                 }
                 return false;
             });
