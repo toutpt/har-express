@@ -1,6 +1,6 @@
 {
   "name": "har-express",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Use HAR file to create a mock server",
   "main": "index.js",
   "scripts": {
