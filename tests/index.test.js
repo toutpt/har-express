@@ -50,15 +50,13 @@ describe('har', () => {
             const filter = har.__get__('filter');
             // when filter on search without queryString
             let entries = filter(content, {
-                path: '/search', method: 'GET', param: () => undefined,
+                path: '/search', method: 'GET', params: {},
             });
             expect(entries.length).toBe(2);
             // when filter on search with queryString
             entries = filter(content, {
-                path: '/search', method: 'GET', param: (name) => {
-                    if (name === 'type') {
-                        return 'foo';
-                    }
+                path: '/search', method: 'GET', params: {
+                    type: 'foo'
                 },
             });
             expect(entries.length).toBe(1);
@@ -66,7 +64,7 @@ describe('har', () => {
         it('should support same body', () => {
             const filter = har.__get__('filter');
             let entries = filter(content, {
-                path: '/search', method: 'POST', param: () => undefined, body: '{\"q\": \"second\"}'
+                path: '/search', method: 'POST', params: {}, body: '{\"q\": \"second\"}'
             });
             expect(entries.length).toBe(1);
         });
