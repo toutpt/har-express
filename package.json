@@ -1,6 +1,6 @@
 {
   "name": "har-express",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Use HAR file to create a mock server",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "url": "https://github.com/toutpt/har-express.git"
   },
   "devDependencies": {
-    "jest": "^26.0.0",
-    "rewire": "^5.0.0"
+    "jest": "^27.5.0",
+    "rewire": "^6.0.0"
   }
 }
