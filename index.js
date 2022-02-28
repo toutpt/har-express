@@ -135,7 +135,7 @@ function getMiddleware(path, options) {
             if (candidate.status !== 200) {
                 res.status(candidate.status);
             }
-            res.type(candidate.content.mimeType).send(candidate.content.text);
+            res.type(candidate.content.mimeType).send(Buffer.from(candidate.content.text, candidate.content.encoding));
         } else {
             next();
         }
